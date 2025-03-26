@@ -1,11 +1,11 @@
-import { UniqueId } from "../../../../../../libs/shared/testing/unique-id";
-import { IUserRepository } from "../../../../domain/contracts/repository/user.repository";
-import { ICreateUserUseCase } from "../../../../domain/contracts/use-cases/create-user";
-import { UserFakerBuilder } from "../../../../domain/user-fake.build";
-import { User } from "../../../../domain/user.aggregate";
-import { CreateUserUseCase } from "../create-user.use-case";
+import { UniqueId } from '../../../../../../libs/shared/testing/unique-id';
+import { IUserRepository } from '../../../../domain/contracts/repository/user.repository';
+import { ICreateUserUseCase } from '../../../../domain/contracts/use-cases/create-user';
+import { UserFakerBuilder } from '../../../../domain/user-fake.build';
+import { User } from '../../../../domain/user.aggregate';
+import { CreateUserUseCase } from '../create-user.use-case';
 
-describe("CreateUserUseCase", () => {
+describe('CreateUserUseCase', () => {
   let sut: ICreateUserUseCase;
   let userRepository: IUserRepository;
 
@@ -49,40 +49,40 @@ describe("CreateUserUseCase", () => {
     sut = await module.resolve(ICreateUserUseCase);
   });
 
-  test("should call [IUserRepository.create] with correct params", async () => {
+  test('should call [IUserRepository.create] with correct params', async () => {
     await sut.execute({ ...userCreated, id });
 
     expect(userRepository.create).toHaveBeenCalledTimes(1);
     expect(userRepository.create).toHaveBeenCalledWith(userCreated);
   });
 
-  test("should dispatch [UserCreatedEvent] on success", async () => {
+  test('should dispatch [UserCreatedEvent] on success', async () => {
     jest.useFakeTimers();
 
     await sut.execute({ ...userCreated, id });
 
     expect(eventDispastcher.dispatchEvent).toHaveBeenCalledTimes(1);
     expect(eventDispastcher.dispatchEvent).toHaveBeenCalledWith(
-      new UserCreatedEvent(userCreated.id, userCreated)
+      new UserCreatedEvent(userCreated.id, userCreated),
     );
   });
 
-  test("should rethrow if [IUserRepository.create] throws", async () => {
-    const error: Error = new Error("any_ error");
-    jest.spyOn(userRepository, "create").mockRejectedValueOnce(error);
+  test('should rethrow if [IUserRepository.create] throws', async () => {
+    const error: Error = new Error('any_ error');
+    jest.spyOn(userRepository, 'create').mockRejectedValueOnce(error);
 
     const promise: Promise<void> = sut.execute({ ...userCreated, id });
 
     expect(promise).rejects.toThrow(error);
   });
 
-  test("should call [IIdentityAndAccessService] with correct params", async () => {
+  test('should call [IIdentityAndAccessService] with correct params', async () => {
     await sut.execute({ ...userCreated, id });
 
     expect(identityAndAccessService.addUserRole).toHaveBeenCalledTimes(1);
     expect(identityAndAccessService.addUserRole).toHaveBeenCalledWith(
       userCreated.id,
-      ChecktudoRolesEnum.BASIC
+      ChecktudoRolesEnum.BASIC,
     );
   });
 });
