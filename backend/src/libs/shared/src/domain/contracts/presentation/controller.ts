@@ -1,4 +1,4 @@
-import { IHttpResponse } from "./http";
+import { IHttpResponse } from './http';
 
 export abstract class IController<InputDto, OutputDto> {
   abstract handle(

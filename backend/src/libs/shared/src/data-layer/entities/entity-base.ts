@@ -1,4 +1,4 @@
-import { IEntityBase } from "../../domain/models/entities/entity-base";
+import { IEntityBase } from '../../domain/models/entities/entity-base';
 
 export class EntityBase implements IEntityBase {
   id?: string;

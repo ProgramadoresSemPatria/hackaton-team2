@@ -1,4 +1,4 @@
-import { IRepositoryBase } from "../../../../../libs/shared/src/domain/contracts/infrastructure/repository-base";
-import { User } from "../../user.aggregate";
+import { IRepositoryBase } from '../../../../../libs/shared/src/domain/contracts/infrastructure/repository-base';
+import { User } from '../../user.aggregate';
 
 export abstract class IUserRepository extends IRepositoryBase<User> {}

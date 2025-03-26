@@ -1,4 +1,4 @@
-import { IEntityBase } from "../../models/entities/entity-base";
+import { IEntityBase } from '../../models/entities/entity-base';
 
 export interface IPaginatedResult<T> {
   docs: T[];
@@ -12,26 +12,26 @@ export interface IPaginatedResult<T> {
 
 export abstract class IRepositoryBase<DomainModel extends IEntityBase> {
   abstract normalize<NonNormalizedItem = any, NormalizedItem = any>(
-    persistencyObject: NonNormalizedItem
+    persistencyObject: NonNormalizedItem,
   ): NormalizedItem;
   abstract mapToDomain(normalizedPersistencyObject: any): DomainModel;
   abstract create(
     data: DomainModel,
-    transactionSession?: any
+    transactionSession?: any,
   ): Promise<DomainModel>;
   abstract save(
     data: DomainModel,
-    transactionSession?: any
+    transactionSession?: any,
   ): Promise<DomainModel>;
   abstract update(
     id: string,
     data: Partial<DomainModel>,
-    transactionSession?: any
+    transactionSession?: any,
   ): Promise<boolean>;
   abstract updateMany(
     filter: any,
     data: Partial<DomainModel>,
-    transactionSession?: any
+    transactionSession?: any,
   ): Promise<void>;
   abstract delete(id: string, transactionSession?: any): Promise<void>;
   abstract deleteOne(query: any, transactionSession?: any): Promise<void>;
@@ -40,24 +40,24 @@ export abstract class IRepositoryBase<DomainModel extends IEntityBase> {
   abstract get(
     id: string,
     select?: string[],
-    populate?: any
+    populate?: any,
   ): Promise<DomainModel>;
   abstract getMany(
     query: any,
     select?: string[],
-    populate?: any
+    populate?: any,
   ): Promise<DomainModel[]>;
   abstract paginate(
     page: number,
     limit: number,
     query: any,
     select?: string[],
-    populate?: any
+    populate?: any,
   ): Promise<IPaginatedResult<DomainModel>>;
   abstract getOne(
     filter: Partial<DomainModel>,
     select?: string[],
     opulate?: string[],
-    shouldLoadRelations?: boolean
+    shouldLoadRelations?: boolean,
   ): Promise<DomainModel>;
 }

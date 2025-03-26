@@ -1,8 +1,8 @@
 import {
   FakeBuilder,
   PropOrFactory,
-} from "../../../libs/shared/testing/fake.bulder";
-import { User } from "./user.aggregate";
+} from '../../../libs/shared/testing/fake.bulder';
+import { User } from './user.aggregate';
 
 export class UserFakerBuilder<TBuild = any> extends FakeBuilder<TBuild> {
   private _email: PropOrFactory<string> = () => this._chance.email();
@@ -32,7 +32,7 @@ export class UserFakerBuilder<TBuild = any> extends FakeBuilder<TBuild> {
         new User({
           name: this._callFactory(this._name),
           email: this._callFactory(this._email),
-        })
+        }),
     );
 
     return (this._countObjs === 1 ? objects[0] : objects) as TBuild;

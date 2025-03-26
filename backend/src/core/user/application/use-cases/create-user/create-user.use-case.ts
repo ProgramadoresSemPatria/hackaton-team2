@@ -1,9 +1,9 @@
-import { IUserRepository } from "../../../domain/contracts/repository/user.repository";
+import { IUserRepository } from '../../../domain/contracts/repository/user.repository';
 import {
   ICreateUserInput,
   ICreateUserUseCase,
-} from "../../../domain/contracts/use-cases/create-user";
-import { User } from "../../../domain/user.aggregate";
+} from '../../../domain/contracts/use-cases/create-user';
+import { User } from '../../../domain/user.aggregate';
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private readonly userRepository: IUserRepository) {}

@@ -1,6 +1,6 @@
-import { EntityBase } from "../../../libs/shared/src/data-layer/entities/entity-base";
-import { Uuid } from "../../../libs/shared/src/domain/models/value-objects/uuid.vo";
-import { UserFakerBuilder } from "./user-fake.build";
+import { EntityBase } from 'src/libs/shared/src/data-layer/entities/entity-base';
+import { Uuid } from 'src/libs/shared/src/domain/models/value-objects/uuid.vo';
+import { UserFakerBuilder } from './user-fake.build';
 
 export type UserConstructorProps = {
   user_id?: UserId;
