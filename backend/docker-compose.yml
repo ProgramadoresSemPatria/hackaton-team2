@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres:14.3
     environment:
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: hackaton
       POSTGRES_DB: app
     ports:
       - '5432:5432'
