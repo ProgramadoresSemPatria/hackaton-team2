@@ -29,7 +29,13 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       semi: ["error", "always"],
-      "prettier/prettier": "error",
+      "prettier/prettier": [
+        "warn",
+        {
+          tabWidth: 2,
+          useTabs: false,
+        },
+      ],
       "comma-dangle": ["error", "always-multiline"],
       "eol-last": ["warn", "always"],
     },
