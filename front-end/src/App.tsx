@@ -1,8 +1,8 @@
-import Register from "./view/pages/register/Register";
+import Login from "./view/pages/login/Login";
 
 function App() {
   return (
-    <Register/>
+    <Login/>
   );
 }
 
