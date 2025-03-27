@@ -1,6 +1,8 @@
+import Register from "./view/pages/register/Register";
+
 function App() {
   return (
-    <h1>Hackaton A Base - Team 2</h1>
+    <Register/>
   );
 }
 
