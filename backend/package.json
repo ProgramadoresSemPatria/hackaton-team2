@@ -21,7 +21,11 @@
     "docker:start": "docker compose up -d",
     "docker:stop": "docker compose stop",
     "docker:clean": "docker compose rm -fsv",
-    "db:update": "psql -h localhost -U postgres -p 5432 -U postgres -d app -f create.sql"
+    "db:update": "psql -h localhost -U postgres -p 5432 -U postgres -d app -f create.sql",
+    "migration:generate": "npm run typeorm migration:generate -- -d src/nest-modules/postgres-module/typeorm.config.ts",
+    "migration:run": "npm run typeorm migration:run -- -d src/nest-modules/postgres-module/typeorm.config.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d src/nest-modules/postgres-module/typeorm.config.ts",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli"
   },
   "dependencies": {
     "@nestjs/cli": "^11.0.5",
@@ -64,22 +68,5 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }
