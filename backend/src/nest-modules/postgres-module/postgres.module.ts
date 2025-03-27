@@ -1,31 +1,31 @@
+import { UserModel } from '@core/user/infrastructure/user.model';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { allModels } from './typeorm.config';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (envService: ConfigService) => ({
+      useFactory: () => ({
         type: 'postgres',
-        port: +envService.get<number>('POSTGRES_PORT'),
-        host: envService.get<string>('POSTGRES_HOST'),
-        username: envService.get<string>('POSTGRES_USER'),
-        password: envService.get<string>('POSTGRES_PASSWORD'),
-        database: envService.get<string>('POSTGRES_DATABASE'),
-        schema: envService.get<string>('POSTGRES_SCHEMA'),
+        schema: process.env.POSTGRES_SCHEMA,
+        host: process.env.POSTGRES_HOST,
+        port: +process.env.POSTGRES_PORT,
+        username: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DATABASE,
         synchronize: false,
-        logging: false,
+        logging: true,
         autoLoadEntities: false,
-        entities: [...allModels],
+        entities: [UserModel],
       }),
       dataSourceFactory: async (options: DataSourceOptions) => {
         return new DataSource({
           ...options,
-          migrations: ['./migrations/*.{js,ts}'],
+          migrations: ['migrations/*.{js,ts}'],
           name: 'default',
         }).initialize();
       },
