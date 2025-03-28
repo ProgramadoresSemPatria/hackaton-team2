@@ -33,7 +33,7 @@ export default tseslint.config(
         "warn",
         {
           tabWidth: 2,
-          useTabs: false,
+          useTabs: true,
         },
       ],
       "comma-dangle": ["error", "always-multiline"],
