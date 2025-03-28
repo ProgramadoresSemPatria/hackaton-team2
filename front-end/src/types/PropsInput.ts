@@ -1,5 +1,7 @@
 export interface PropsInput {
-    placeholder: string
-    requiredInput?: boolean
-    type: "text" | "e-mail" | "date" | "password"
+	id?: string;
+	placeholder: string;
+	requiredInput?: boolean;
+	type: "text" | "e-mail" | "date" | "password";
+	value?: string;
 }
