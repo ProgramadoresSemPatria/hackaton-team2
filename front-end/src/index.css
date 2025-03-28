@@ -3,6 +3,7 @@
 
 body {
 	background-color: var(--color-primary-color-darker);
+	color: var(--color-color-font);
 }
 
 @theme {
