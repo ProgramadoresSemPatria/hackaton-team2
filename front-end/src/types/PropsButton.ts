@@ -1,4 +1,5 @@
 export interface PropsButton {
-    name: string
-    icon?: "register" | "login" | "edit"
+	name: string;
+	icon?: "register" | "login" | "edit";
+	className?: string;
 }
