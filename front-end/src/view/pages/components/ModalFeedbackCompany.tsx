@@ -1,0 +1,20 @@
+import Button from "../../components/Button";
+import Modal from "../../components/Modal";
+
+export default function ModalFeedbackCompany() {
+    return(
+        <Modal isOpen={true}>
+            <section className="text-color-font flex flex-col gap-3">
+                <h1 className="font-semibold text-center sm:text-left mb-2">Qual foi o feedback da empresa?</h1>
+
+                {/* OBS: exclude this code when creating the "BigInput" component */}
+                <textarea autoFocus rows={6} className="w-full resize-none bg-bg-input rounded-lg p-4 outline-none"></textarea>
+
+                <footer className="flex flex-col-reverse items-center sm:grid sm:grid-cols-2 gap-3 mt-3">
+                    <a href="#" className="text-center hover:text-primary-color transition-colors duration-150 ease-linear p-3">Pular</a>
+                    <Button name="Salvar"/>
+                </footer>
+            </section>
+        </Modal>
+    )
+}
