@@ -1,4 +1,4 @@
-export interface Application {
+export interface PropsApplication {
 	id: number;
 	role: string;
 	company: string;

@@ -1,8 +1,8 @@
 import { Plus } from "phosphor-react";
-import { Application } from "../../../types/Application";
+import { PropsApplication } from "../../../types/PropsApplication";
 
 // TODO: Remove this mocked data after back-end integration.
-const mockedApplications: Application[] = [
+const mockedApplications: PropsApplication[] = [
 	{
 		id: 1,
 		role: "Fullstack Engineer",
