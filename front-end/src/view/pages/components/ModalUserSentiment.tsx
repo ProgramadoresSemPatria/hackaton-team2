@@ -6,7 +6,7 @@ export default function ModalUserSentiment() {
     return (
         <Modal isOpen={true}>
             <section className="flex flex-col gap-3 text-color-font font-inter">
-                <h1 className="mb-2 font-semibold text-center sm:text-left">Qual o seu sentimento sobre a entrevista?</h1>
+                <h2 className="mb-2 font-semibold text-center sm:text-left">Qual o seu sentimento sobre a entrevista?</h2>
                 <BigInput requiredInput={false}/>
 
                 <footer className="flex flex-col-reverse items-center sm:grid sm:grid-cols-2 mt-3 gap-3">
