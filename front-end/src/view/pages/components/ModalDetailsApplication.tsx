@@ -5,9 +5,9 @@ export default function ModalDetailsApplication() {
     return (
         <>
             <Modal isOpen={true}>
-                <section className="text-white font-inter flex flex-col gap-2">
+                <section className="text-white font-inter flex flex-col gap-2 ">
                     <header className="mb-2">
-                        <h2 className="font-semibold text-1xl sm:text-2xl text-color-font mb-1">Fullstack Engineer - Google LLC</h2>
+                        <h2 className="font-semibold sm:text-2xl text-color-font mb-1">Fullstack Engineer - Google LLC</h2>
                         <p className="text-place-color font-semibold">$140,000 - No Equity</p>
                     </header>
                     <div className="my-1">
@@ -25,7 +25,7 @@ export default function ModalDetailsApplication() {
                             <p className="text-place-color">É internacional?</p>
                         </div>
                         <div>
-                            <a href="#" className="underline">linkedlin.com/john-doe</a>
+                            <a href="#" className="underline">linkedin.com/john-doe</a>
                             <p className="text-place-color">Contato direto na empresa</p>
                         </div>
                         <div>
