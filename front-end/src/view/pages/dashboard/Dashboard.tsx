@@ -4,6 +4,7 @@ import ModalDetailsApplication from "./application-details/ModalDetailsApplicati
 import useDashboard from "./use-dashboard";
 import Profile from "./profile/Profile";
 import ModalNewInterview from "./new-interview/ModalNewInterview";
+import ModalUserSentiment from "./user-sentiment/ModalUserSentiment";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -41,7 +42,10 @@ export default function Dashboard() {
     isProfileModalOpen,
     handleOpenNewInterview,
     isNewInterviewOpen,
-    handleCloseNewInterview
+    handleCloseNewInterview,
+    handleOpenUserSentiment,
+    isUserSentiment,
+    handleCloseUserSentiment,
   } = useDashboard();
 
   return (
@@ -91,7 +95,7 @@ export default function Dashboard() {
               </span>
             </div>
             <div className="w-full flex justify-end">
-              <button className="text-color-font font-semibold">
+              <button onClick={handleOpenUserSentiment} className="text-color-font font-semibold">
                 <span className="text-xs sm:text-base font-semibold hover:cursor-pointer hover:text-place-color transition-colors duration-100">
                   Encerrada?
                 </span>
@@ -174,6 +178,7 @@ export default function Dashboard() {
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
       <ModalNewInterview isOpen={isNewInterviewOpen} onClose={handleCloseNewInterview}/>
+      <ModalUserSentiment isOpen={isUserSentiment} onClose={handleCloseUserSentiment}/>
     </div>
   );
 }

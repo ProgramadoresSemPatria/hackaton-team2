@@ -5,6 +5,7 @@ export default function useDashboard() {
   const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
     useState(false);
   const [isNewInterviewOpen, setIsNewInterviewOpen] = useState(false)
+  const  [isUserSentiment, setIsUserSentiment] = useState(false)
 
   function handleOpenApplicationDetailsModal(): void {
     setIsApplicationDetailsModalOpen(true);
@@ -30,6 +31,14 @@ export default function useDashboard() {
     setIsNewInterviewOpen(false)
   }
 
+  function handleOpenUserSentiment() {
+    setIsUserSentiment(true)
+  }
+
+  function handleCloseUserSentiment() {
+    setIsUserSentiment(false)
+  }
+
   return {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
@@ -40,5 +49,8 @@ export default function useDashboard() {
     handleOpenNewInterview,
     isNewInterviewOpen,
     handleCloseNewInterview,
+    handleOpenUserSentiment,
+    isUserSentiment,
+    handleCloseUserSentiment,
   };
 }
