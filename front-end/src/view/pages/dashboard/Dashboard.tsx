@@ -46,6 +46,9 @@ export default function Dashboard() {
     handleOpenUserSentiment,
     isUserSentiment,
     handleCloseUserSentiment,
+    handleOpenFeedbackCompany,
+    isFeedbackCompanyOpen,
+    handleCloseFeedbackComapny,
   } = useDashboard();
 
   return (
