@@ -36,16 +36,10 @@ export default function Dashboard() {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
     isApplicationDetailsModalOpen,
+    handleOpenProfileModal,
+    handleCloseProfileModal,
+    isProfileModalOpen,
   } = useDashboard();
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-
-  function handleOpenProfileModal() {
-    setIsProfileModalOpen(true);
-  }
-
-  function handleCloseProfileModal() {
-    setIsProfileModalOpen(false);
-  }
 
   return (
     <div className="w-full h-screen flex flex-col items-center">

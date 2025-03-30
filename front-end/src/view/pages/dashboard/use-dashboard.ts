@@ -1,20 +1,32 @@
 import { useState } from "react";
 
 export default function useDashboard() {
-	const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
-		useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
+    useState(false);
 
-	function handleOpenApplicationDetailsModal(): void {
-		setIsApplicationDetailsModalOpen(true);
-	}
+  function handleOpenApplicationDetailsModal(): void {
+    setIsApplicationDetailsModalOpen(true);
+  }
 
-	function handleCloseApplicationDetailsModal(): void {
-		setIsApplicationDetailsModalOpen(false);
-	}
+  function handleCloseApplicationDetailsModal(): void {
+    setIsApplicationDetailsModalOpen(false);
+  }
 
-	return {
-		handleOpenApplicationDetailsModal,
-		handleCloseApplicationDetailsModal,
-		isApplicationDetailsModalOpen,
-	};
+  function handleOpenProfileModal() {
+    setIsProfileModalOpen(true);
+  }
+
+  function handleCloseProfileModal() {
+    setIsProfileModalOpen(false);
+  }
+
+  return {
+    handleOpenApplicationDetailsModal,
+    handleCloseApplicationDetailsModal,
+    isApplicationDetailsModalOpen,
+    handleOpenProfileModal,
+    handleCloseProfileModal,
+    isProfileModalOpen,
+  };
 }
