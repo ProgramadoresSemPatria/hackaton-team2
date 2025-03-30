@@ -55,8 +55,8 @@ export default function ModalNewInterview() {
                 </div>
 
                 <div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
-                    <a href="#" className="underline flex items-center justify-center">Feedback da empresa</a>
-                    <Input placeholder="Data da entrevista" type="date"/>
+                    <a href="#" className="underline flex items-center justify-center hover:text-primary-color duration-150 ease-linear">Feedback da empresa</a>
+                    <Input placeholder="Data da entrevista" type="date" className="scheme-dark"/>
                 </div>
 
                 <footer className="flex flex-col-reverse sm:grid grid-cols-2 mt-4 gap-2">
