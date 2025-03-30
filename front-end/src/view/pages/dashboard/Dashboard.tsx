@@ -1,5 +1,7 @@
 import { Plus } from "phosphor-react";
 import { PropsApplication } from "../../../types/PropsApplication";
+import Profile from "./profile/Profile";
+import { useState } from "react";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -28,6 +30,16 @@ const mockScheduledInterview = {
 };
 
 export default function Dashboard() {
+	const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
+
+	function handleOpenProfileModal() {
+		setIsProfileModalOpen(true)
+	}
+
+	function handleCloseProfileModal() {
+		setIsProfileModalOpen(false)
+	}
+
 	return (
 		<div className="w-full h-screen flex flex-col items-center">
 			<header className="w-full flex justify-between py-8 px-20">
@@ -36,7 +48,7 @@ export default function Dashboard() {
 					<button className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
 						Home
 					</button>
-					<button className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
+					<button onClick={handleOpenProfileModal} className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
 						Perfil
 					</button>
 				</div>
@@ -142,6 +154,7 @@ export default function Dashboard() {
 					)}
 				</div>
 			</div>
+			<Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal}/>
 		</div>
 	);
 }
