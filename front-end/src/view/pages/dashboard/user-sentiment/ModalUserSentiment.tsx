@@ -15,7 +15,7 @@ export default function ModalUserSentiment({ isOpen, onClose }: ModalUserSentime
                 <BigInput requiredInput={false}/>
 
                 <footer className="flex flex-col-reverse items-center sm:grid sm:grid-cols-2 mt-3 gap-3">
-                    <a onClick={onClose} href="#" className="p-3 font-semibold text-center w-full hover:text-primary-color transition-colors  duration-150 ease-linear">Pular</a>
+                    <a onClick={onClose} href="#" className="p-3 font-semibold text-center w-full hover:text-place-color transition-colors  duration-150 ease-linear">Pular</a>
                     <Button name="Salvar"/>
                 </footer>
             </section>
