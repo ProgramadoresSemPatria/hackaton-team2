@@ -11,7 +11,6 @@ export type UserConstructorProps = {
 export type UserCreateCommand = {
   name: string;
   email: string;
-  password: string;
 };
 
 export class UserId extends Uuid {}
@@ -20,6 +19,7 @@ export class User extends EntityBase {
   user_id: UserId;
   name: string;
   email: string;
+  password: string;
 
   constructor(props: UserConstructorProps) {
     super();
@@ -31,6 +31,15 @@ export class User extends EntityBase {
     const user = new User(props);
     return user;
   }
+  defineUsername(name: string): User {
+    if (name) this.name = name.toLowerCase();
+    return this;
+  }
+  defineHashedPassword(hashedPassword: string): User {
+    this.password = hashedPassword;
+    return this;
+  }
+
   static fake() {
     return UserFakerBuilder;
   }
