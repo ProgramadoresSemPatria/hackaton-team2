@@ -6,7 +6,9 @@ export type ICreateUserInput = {
   password: string;
 };
 
-export type ICreateUserOutput = void;
+export type ICreateUserOutput = {
+  userId: string;
+};
 
 export abstract class ICreateUserUseCase
   implements IUseCase<ICreateUserInput, ICreateUserOutput>
