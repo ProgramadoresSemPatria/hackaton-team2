@@ -1,11 +1,16 @@
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Modal from "../../components/Modal";
-import Select from "../../components/Select";
+import Button from "../../../components/Button";
+import Input from "../../../components/Input";
+import Modal from "../../../components/Modal";
+import Select from "../../../components/Select";
 
-export default function ModalNewInterview() {
+interface ModalNewInterviewProps {
+	isOpen: boolean
+	onClose: () => void
+}
+
+export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterviewProps) {
 	return (
-		<Modal isOpen={true}>
+		<Modal isOpen={isOpen}>
 			<section className="flex flex-col gap-2 text-color-font">
 				<Input placeholder="Cargo" type="text" />
 
@@ -31,7 +36,7 @@ export default function ModalNewInterview() {
 				<div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
 					<a
 						href="#"
-						className="underline flex items-center justify-center hover:text-primary-color duration-150 ease-linear"
+						className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
 					>
 						Feedback da empresa
 					</a>
@@ -44,8 +49,9 @@ export default function ModalNewInterview() {
 
 				<footer className="flex flex-col-reverse sm:grid grid-cols-2 mt-4 gap-2">
 					<a
+						onClick={onClose}
 						href="#"
-						className="p-3 text-center hover:text-primary-color transition-colors duration-150 ease-linear"
+						className="p-3 text-center hover:text-place-color transition-colors duration-150 ease-linear  font-semibold"
 					>
 						Fechar
 					</a>
