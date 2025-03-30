@@ -29,13 +29,6 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       semi: ["error", "always"],
-      "prettier/prettier": [
-        "warn",
-        {
-          tabWidth: 2,
-          useTabs: true,
-        },
-      ],
       "comma-dangle": ["error", "always-multiline"],
       "eol-last": ["warn", "always"],
     },

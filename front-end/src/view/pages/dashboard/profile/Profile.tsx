@@ -3,11 +3,16 @@ import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
 import useProfile from "./use-profile";
 
-export default function Profile() {
-	const { isModalOpen, closeModal, mockUserInfo } = useProfile();
+interface PropsProfile {
+	isOpen: boolean
+	onClose: () => void
+}
+
+export default function Profile({ isOpen, onClose }: PropsProfile) {
+	const { mockUserInfo } = useProfile();
 
 	return (
-		<Modal isOpen={isModalOpen}>
+		<Modal isOpen={isOpen}>
 			<div className="flex flex-col gap-6">
 				<div className="flex flex-col gap-3">
 					<Input
@@ -72,8 +77,8 @@ export default function Profile() {
 
 				<div className="flex flex-col gap-10 mt-4 sm:flex-row-reverse">
 					<Button name="Salvar" className="flex-1" />
-					<button className="flex-2 hover:cursor-pointer" onClick={closeModal}>
-						<span className="text-color-font font-semibold hover:text-place-color transition-colors duration-100">
+					<button onClick={onClose} className="flex-2 hover:cursor-pointer">
+						<span  className="text-color-font font-semibold hover:text-place-color transition-colors duration-100">
 							Fechar
 						</span>
 					</button>
