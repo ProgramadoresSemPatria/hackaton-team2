@@ -1,5 +1,7 @@
 import { Plus } from "phosphor-react";
 import { PropsApplication } from "../../../types/PropsApplication";
+import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
+import { useState } from "react";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -28,6 +30,17 @@ const mockScheduledInterview = {
 };
 
 export default function Dashboard() {
+	const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
+		useState(false);
+
+	function handleOpenApplicationDetailsModal(): void {
+		setIsApplicationDetailsModalOpen(true);
+	}
+
+	function handleCloseApplicationDetailsModal(): void {
+		setIsApplicationDetailsModalOpen(false);
+	}
+
 	return (
 		<div className="w-full h-screen flex flex-col items-center">
 			<header className="w-full flex justify-between py-8 px-20">
@@ -96,33 +109,40 @@ export default function Dashboard() {
 				<div className="flex flex-col gap-3 pb-8">
 					{mockedApplications.length > 0 ? (
 						mockedApplications.map((application) => (
-							<div
+							<button
+								onClick={handleOpenApplicationDetailsModal}
 								key={application.id}
 								className="flex flex-col gap-6 sm:gap-0 bg-bg-input py-8 pl-10 rounded-lg sm:flex-row border border-bg-input hover:cursor-pointer hover:border-place-color transition-colors duration-100"
 							>
 								<div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
-									<span className="font-medium text-place-color">Cargo</span>
-									<span className="text-lg font-semibold truncate">
+									<span className="font-medium text-place-color self-start">
+										Cargo
+									</span>
+									<span className="text-lg font-semibold self-start truncate">
 										{application.role}
 									</span>
 								</div>
 								<div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
-									<span className="font-medium text-place-color">Empresa</span>
-									<span className="text-lg font-semibold truncate">
+									<span className="font-medium text-place-color self-start">
+										Empresa
+									</span>
+									<span className="text-lg font-semibold self-start truncate">
 										{application.company}
 									</span>
 								</div>
 								<div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
-									<span className="font-medium text-place-color">Salário</span>
-									<span className="text-lg font-semibold truncate">
+									<span className="font-medium text-place-color self-start">
+										Salário
+									</span>
+									<span className="text-lg font-semibold self-start truncate">
 										{application.salary}
 									</span>
 								</div>
 								<div className="flex flex-col gap-3 sm:border-r sm:border-place-color flex-1 sm:flex-col-reverse">
-									<span className="font-medium text-place-color">
+									<span className="font-medium text-place-color self-start">
 										Tem Equity
 									</span>
-									<span className="text-lg font-semibold truncate">
+									<span className="text-lg font-semibold self-start truncate">
 										{application.equity}
 									</span>
 								</div>
@@ -131,7 +151,7 @@ export default function Dashboard() {
 										<span>{application.status}</span>
 									</div>
 								</div>
-							</div>
+							</button>
 						))
 					) : (
 						<div className="w-full flex justify-center items-center">
@@ -142,6 +162,10 @@ export default function Dashboard() {
 					)}
 				</div>
 			</div>
+			<ModalDetailsApplication
+				isOpen={isApplicationDetailsModalOpen}
+				onClose={handleCloseApplicationDetailsModal}
+			/>
 		</div>
 	);
 }
