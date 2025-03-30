@@ -3,4 +3,5 @@ import { User } from '../../user.aggregate';
 
 export abstract class IUserRepository extends IRepositoryBase<User> {
   abstract addUserAccountCreated({ name, email, password }): Promise<User>;
+  abstract getUserByEmail(email: string);
 }
