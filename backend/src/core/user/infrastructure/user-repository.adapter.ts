@@ -32,4 +32,12 @@ export class UserRepositoryAdapter
     const userCreated = await this._userRepository.save(userEntity);
     return this.mapToDomain(userCreated);
   }
+  async getUserByEmail(email: string) {
+    const user = await this._userRepository.findOne({
+      where: {
+        email: email,
+      },
+    });
+    return user;
+  }
 }
