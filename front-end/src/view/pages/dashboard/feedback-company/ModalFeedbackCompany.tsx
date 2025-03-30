@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Button from "../../../components/Button";
 import Modal from "../../../components/Modal";
 
@@ -20,7 +19,7 @@ export default function ModalFeedbackCompany({ isOpen, onClose }: ModalFeedbackC
                           className="w-full resize-none bg-bg-input rounded-lg p-4 outline-none"></textarea>
 
                 <footer className="flex flex-col-reverse items-center sm:grid sm:grid-cols-2 gap-3 mt-3">
-                    <a onClick={onClose} href="#" className="text-center hover:text-primary-color transition-colors duration-150 ease-linear p-3">Pular</a>
+                    <a onClick={onClose} href="#" className="text-center hover:text-place-color transition-colors duration-150 ease-linear p-3">Pular</a>
                     <Button name="Salvar"/>
                 </footer>
             </section>
