@@ -15,3 +15,19 @@ body {
 	--font-inter: "Inter", sans-serif;
 	--color-color-font: #fafafa;
 }
+
+/* For Scroll */
+::-webkit-scrollbar-track {
+	background-color: #8892a7; 
+	border-radius: 10px; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+	background-color: var(--color-bg-input); 
+	border-radius: 10px; 
+  }
+
+  ::-webkit-scrollbar {
+	width: 10px; 
+	height: 10px;
+  }
