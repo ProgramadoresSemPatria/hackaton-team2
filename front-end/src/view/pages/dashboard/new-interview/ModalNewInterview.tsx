@@ -36,7 +36,7 @@ export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterview
 				<div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
 					<a
 						href="#"
-						className="underline flex items-center justify-center hover:text-primary-color duration-150 ease-linear"
+						className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
 					>
 						Feedback da empresa
 					</a>
@@ -51,7 +51,7 @@ export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterview
 					<a
 						onClick={onClose}
 						href="#"
-						className="p-3 text-center hover:text-primary-color transition-colors duration-150 ease-linear"
+						className="p-3 text-center hover:text-place-color transition-colors duration-150 ease-linear  font-semibold"
 					>
 						Fechar
 					</a>
