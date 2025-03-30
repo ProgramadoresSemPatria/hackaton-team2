@@ -1,7 +1,7 @@
 import { Plus } from "phosphor-react";
 import { PropsApplication } from "../../../types/PropsApplication";
 import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
-import { useState } from "react";
+import useDashboard from "./use-dashboard";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -30,16 +30,11 @@ const mockScheduledInterview = {
 };
 
 export default function Dashboard() {
-	const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
-		useState(false);
-
-	function handleOpenApplicationDetailsModal(): void {
-		setIsApplicationDetailsModalOpen(true);
-	}
-
-	function handleCloseApplicationDetailsModal(): void {
-		setIsApplicationDetailsModalOpen(false);
-	}
+	const {
+		handleOpenApplicationDetailsModal,
+		handleCloseApplicationDetailsModal,
+		isApplicationDetailsModalOpen,
+	} = useDashboard();
 
 	return (
 		<div className="w-full h-screen flex flex-col items-center">
