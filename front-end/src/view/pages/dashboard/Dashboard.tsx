@@ -3,7 +3,7 @@ import { PropsApplication } from "../../../types/PropsApplication";
 import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
 import useDashboard from "./use-dashboard";
 import Profile from "./profile/Profile";
-import { useState } from "react";
+import ModalNewInterview from "./new-interview/ModalNewInterview";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -39,6 +39,9 @@ export default function Dashboard() {
     handleOpenProfileModal,
     handleCloseProfileModal,
     isProfileModalOpen,
+    handleOpenNewInterview,
+    isNewInterviewOpen,
+    handleCloseNewInterview
   } = useDashboard();
 
   return (
@@ -101,7 +104,7 @@ export default function Dashboard() {
           <span className="text-sm sm:text-text-color-font font-semibold sm:text-lg">
             Candidaturas e vagas de interesse
           </span>
-          <button className="flex items-center gap-3 hover:cursor-pointer">
+          <button onClick={handleOpenNewInterview} className="flex items-center gap-3 hover:cursor-pointer">
             <span className="hidden sm:block text-color-font text-lg font-semibold hover:text-place-color transition-colors duration-100">
               Adicionar
             </span>
@@ -170,6 +173,7 @@ export default function Dashboard() {
         onClose={handleCloseApplicationDetailsModal}
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
+      <ModalNewInterview isOpen={isNewInterviewOpen} onClose={handleCloseNewInterview}/>
     </div>
   );
 }

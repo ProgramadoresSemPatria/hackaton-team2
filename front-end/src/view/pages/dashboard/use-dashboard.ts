@@ -4,6 +4,7 @@ export default function useDashboard() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
     useState(false);
+  const [isNewInterviewOpen, setIsNewInterviewOpen] = useState(false)
 
   function handleOpenApplicationDetailsModal(): void {
     setIsApplicationDetailsModalOpen(true);
@@ -21,6 +22,14 @@ export default function useDashboard() {
     setIsProfileModalOpen(false);
   }
 
+  function handleOpenNewInterview() {
+    setIsNewInterviewOpen(true)
+  }
+
+  function handleCloseNewInterview() {
+    setIsNewInterviewOpen(false)
+  }
+
   return {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
@@ -28,5 +37,8 @@ export default function useDashboard() {
     handleOpenProfileModal,
     handleCloseProfileModal,
     isProfileModalOpen,
+    handleOpenNewInterview,
+    isNewInterviewOpen,
+    handleCloseNewInterview,
   };
 }
