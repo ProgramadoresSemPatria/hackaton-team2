@@ -2,6 +2,8 @@ import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
 import Select from "../../../components/Select";
+import ModalFeedbackCompany from "../feedback-company/ModalFeedbackCompany";
+import useDashboard from "../use-dashboard";
 
 interface ModalNewInterviewProps {
 	isOpen: boolean
@@ -9,6 +11,8 @@ interface ModalNewInterviewProps {
 }
 
 export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterviewProps) {
+	const {handleOpenFeedbackCompany, isFeedbackCompanyOpen, handleCloseFeedbackComapny} = useDashboard()
+
 	return (
 		<Modal isOpen={isOpen}>
 			<section className="flex flex-col gap-2 text-color-font">
@@ -35,6 +39,7 @@ export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterview
 
 				<div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
 					<a
+						onClick={handleOpenFeedbackCompany}
 						href="#"
 						className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
 					>
@@ -57,6 +62,7 @@ export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterview
 					</a>
 					<Button name="Salvar" />
 				</footer>
+				<ModalFeedbackCompany isOpen={isFeedbackCompanyOpen} onClose={handleCloseFeedbackComapny} />
 			</section>
 		</Modal>
 	);
