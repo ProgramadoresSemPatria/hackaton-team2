@@ -1,8 +1,8 @@
-import Login from "./view/pages/login/Login";
+import ModalDetailsApplication from "./view/pages/components/ModalDetailsApplication";
 
 function App() {
   return (
-    <Login/>
+    <ModalDetailsApplication/>
   );
 }
 
