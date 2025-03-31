@@ -32,6 +32,7 @@ export default function Dashboard() {
     handleCloseFeedbackComapny,
     handleGetApplications,
     jobApplications,
+    selectedApplication,
   } = useDashboard();
 
   useEffect(() => {
@@ -116,7 +117,7 @@ export default function Dashboard() {
           {jobApplications?.length > 0 ? (
             jobApplications.map((application) => (
               <button
-                onClick={handleOpenApplicationDetailsModal}
+                onClick={() => handleOpenApplicationDetailsModal(application)}
                 key={application.job_application_id}
                 className="flex flex-col gap-6 sm:gap-0 bg-bg-input py-8 pl-10 rounded-lg sm:flex-row border border-bg-input hover:cursor-pointer hover:border-place-color transition-colors duration-100"
               >
@@ -171,6 +172,7 @@ export default function Dashboard() {
       <ModalDetailsApplication
         isOpen={isApplicationDetailsModalOpen}
         onClose={handleCloseApplicationDetailsModal}
+        application={selectedApplication}
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
       <ModalNewInterview

@@ -10,8 +10,13 @@ export default function useDashboard() {
   const [isUserSentiment, setIsUserSentiment] = useState(false);
   const [isFeedbackCompanyOpen, setIsFeedbackCompany] = useState(false);
   const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
+  const [selectedApplication, setSelectedApplication] =
+    useState<JobApplication>({} as JobApplication);
 
-  function handleOpenApplicationDetailsModal(): void {
+  function handleOpenApplicationDetailsModal(
+    application: JobApplication
+  ): void {
+    setSelectedApplication(application);
     setIsApplicationDetailsModalOpen(true);
   }
 
@@ -85,5 +90,6 @@ export default function useDashboard() {
     handleCloseFeedbackComapny,
     handleGetApplications,
     jobApplications,
+    selectedApplication,
   };
 }
