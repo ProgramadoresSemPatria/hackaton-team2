@@ -1,8 +1,13 @@
 import { Link } from "react-router";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import useRegister from "./use-Register";
 
 export default function Register() {
+	const { nameRef, emailRef, passwordRef, confirmPasswordRef, handleRegister } = useRegister()
+
+	document.title = "Registro"
+
 	return (
 		<>
 			<div className="min-h-screen flex items-center justify-center p-4">
@@ -26,16 +31,14 @@ export default function Register() {
 						</p>
 					</div>
 
-					<Input placeholder="Nome" type="text" />
-					<Input placeholder="E-mail" type="e-mail" />
+					<Input ref={nameRef} placeholder="Nome" type="text" />
+					<Input ref={emailRef} placeholder="E-mail" type="e-mail" />
 					<div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
-						<Input placeholder="Senha" type="password" />
-						<div className="w-full hidden sm:block">
-							<Input placeholder="Confirmar senha" type="password" />
-						</div>
+						<Input ref={passwordRef} placeholder="Senha" type="password" />
+						<Input ref={confirmPasswordRef} placeholder="Confirmar senha" type="password" />
 					</div>
 					<div className="w-full flex justify-center sm:justify-end">
-						<Button name="Cadastrar" icon="register" />
+						<Button name="Cadastrar" icon="register" onClick={handleRegister}/>
 					</div>
 				</form>
 			</div>
