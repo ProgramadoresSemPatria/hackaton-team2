@@ -51,8 +51,10 @@ export default function ModalDetailsApplication({
             </div>
             <div>
               <p>
-                {application.status[0].toUpperCase() +
-                  application.status.slice(1)}
+                {application?.status
+                  ? application?.status[0]?.toUpperCase() +
+                    application?.status.slice(1)
+                  : "Não definido"}
               </p>
               <p className="text-place-color">Status</p>
             </div>
