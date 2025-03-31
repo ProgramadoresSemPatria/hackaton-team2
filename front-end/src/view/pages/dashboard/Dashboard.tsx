@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Plus } from "phosphor-react";
 import { PropsApplication } from "../../../types/PropsApplication";
 import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
@@ -7,6 +7,8 @@ import Profile from "./profile/Profile";
 import ModalNewInterview from "./new-interview/ModalNewInterview";
 import ModalUserSentiment from "./user-sentiment/ModalUserSentiment";
 import { api } from "../../../api/baseRequest";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { JobApplication } from "../../../types/PropsJobApplication";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -35,6 +37,7 @@ const mockScheduledInterview = {
 };
 
 export default function Dashboard() {
+  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
   const {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
@@ -63,7 +66,7 @@ export default function Dashboard() {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+      setJobApplications(response.data.data.applicationJobs);
     } catch (error) {
       console.error("Erro ao carregar candidaturas: ", error);
     }
@@ -148,11 +151,11 @@ export default function Dashboard() {
         </div>
 
         <div className="flex flex-col gap-3 pb-8">
-          {mockedApplications.length > 0 ? (
-            mockedApplications.map((application) => (
+          {jobApplications?.length > 0 ? (
+            jobApplications.map((application) => (
               <button
                 onClick={handleOpenApplicationDetailsModal}
-                key={application.id}
+                key={application.job_application_id}
                 className="flex flex-col gap-6 sm:gap-0 bg-bg-input py-8 pl-10 rounded-lg sm:flex-row border border-bg-input hover:cursor-pointer hover:border-place-color transition-colors duration-100"
               >
                 <div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
@@ -160,7 +163,7 @@ export default function Dashboard() {
                     Cargo
                   </span>
                   <span className="text-lg font-semibold self-start truncate">
-                    {application.role}
+                    {application.name}
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
@@ -168,7 +171,7 @@ export default function Dashboard() {
                     Empresa
                   </span>
                   <span className="text-lg font-semibold self-start truncate">
-                    {application.company}
+                    {application.name}
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 min-w-48 flex-1 sm:flex-col-reverse">
@@ -176,7 +179,7 @@ export default function Dashboard() {
                     Salário
                   </span>
                   <span className="text-lg font-semibold self-start truncate">
-                    {application.salary}
+                    {formatCurrency(application.salary)}
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 sm:border-r sm:border-place-color flex-1 sm:flex-col-reverse">
@@ -184,7 +187,7 @@ export default function Dashboard() {
                     Tem Equity
                   </span>
                   <span className="text-lg font-semibold self-start truncate">
-                    {application.equity}
+                    {application.isEquity ? "Sim" : "Não"}
                   </span>
                 </div>
                 <div className="flex flex-col items-start justify-center min-w-48 flex-1 sm:items-center">
