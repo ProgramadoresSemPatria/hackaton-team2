@@ -50,6 +50,8 @@ export default function Dashboard() {
     handleCloseUserSentiment,
   } = useDashboard();
 
+  document.title = "Dashboard"
+
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <header className="w-full flex justify-center sm:justify-between gap-15 py-8 px-8 sm:px-20">
