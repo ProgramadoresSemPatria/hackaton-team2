@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Plus } from "phosphor-react";
 import { PropsApplication } from "../../../types/PropsApplication";
 import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
@@ -5,6 +6,7 @@ import useDashboard from "./use-dashboard";
 import Profile from "./profile/Profile";
 import ModalNewInterview from "./new-interview/ModalNewInterview";
 import ModalUserSentiment from "./user-sentiment/ModalUserSentiment";
+import { api } from "../../../api/baseRequest";
 
 // TODO: Remove this mocked data after back-end integration.
 const mockedApplications: PropsApplication[] = [
@@ -50,6 +52,26 @@ export default function Dashboard() {
     isFeedbackCompanyOpen,
     handleCloseFeedbackComapny,
   } = useDashboard();
+
+  async function handleGetApplications(): Promise<void> {
+    // TODO: Remove this after pull request with AuthContext implementation be merged.
+    const userId = "8a3c5075-72f7-411f-bb89-4c07b04d7f34";
+    const token = localStorage.getItem("token");
+    try {
+      const response = await api.get(`job-applications/?${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.error("Erro ao carregar candidaturas: ", error);
+    }
+  }
+
+  useEffect(() => {
+    handleGetApplications();
+  }, []);
 
   return (
     <div className="w-full h-screen flex flex-col items-center">
@@ -98,7 +120,10 @@ export default function Dashboard() {
               </span>
             </div>
             <div className="w-full flex justify-end">
-              <button onClick={handleOpenUserSentiment} className="text-color-font font-semibold">
+              <button
+                onClick={handleOpenUserSentiment}
+                className="text-color-font font-semibold"
+              >
                 <span className="text-xs sm:text-base font-semibold hover:cursor-pointer hover:text-place-color transition-colors duration-100">
                   Encerrada?
                 </span>
@@ -111,7 +136,10 @@ export default function Dashboard() {
           <span className="text-sm sm:text-text-color-font font-semibold sm:text-lg">
             Candidaturas e vagas de interesse
           </span>
-          <button onClick={handleOpenNewInterview} className="flex items-center gap-3 hover:cursor-pointer">
+          <button
+            onClick={handleOpenNewInterview}
+            className="flex items-center gap-3 hover:cursor-pointer"
+          >
             <span className="hidden sm:block text-color-font text-lg font-semibold hover:text-place-color transition-colors duration-100">
               Adicionar
             </span>
@@ -180,8 +208,14 @@ export default function Dashboard() {
         onClose={handleCloseApplicationDetailsModal}
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
-      <ModalNewInterview isOpen={isNewInterviewOpen} onClose={handleCloseNewInterview}/>
-      <ModalUserSentiment isOpen={isUserSentiment} onClose={handleCloseUserSentiment}/>
+      <ModalNewInterview
+        isOpen={isNewInterviewOpen}
+        onClose={handleCloseNewInterview}
+      />
+      <ModalUserSentiment
+        isOpen={isUserSentiment}
+        onClose={handleCloseUserSentiment}
+      />
     </div>
   );
 }
