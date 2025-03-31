@@ -1,11 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { AppRoutes } from "./routes.tsx";
 import "./index.css";
-import Dashboard from "./view/pages/dashboard/Dashboard.tsx";
+import App from "./App.tsx";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<AppRoutes />
-	</StrictMode>
+  <StrictMode>
+    <App />
+    <Toaster position="bottom-center" />
+  </StrictMode>
 );
