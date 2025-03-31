@@ -98,7 +98,10 @@ export default function Dashboard() {
               </span>
             </div>
             <div className="w-full flex justify-end">
-              <button onClick={handleOpenUserSentiment} className="text-color-font font-semibold">
+              <button
+                onClick={handleOpenUserSentiment}
+                className="text-color-font font-semibold"
+              >
                 <span className="text-xs sm:text-base font-semibold hover:cursor-pointer hover:text-place-color transition-colors duration-100">
                   Encerrada?
                 </span>
@@ -111,7 +114,10 @@ export default function Dashboard() {
           <span className="text-sm sm:text-text-color-font font-semibold sm:text-lg">
             Candidaturas e vagas de interesse
           </span>
-          <button onClick={handleOpenNewInterview} className="flex items-center gap-3 hover:cursor-pointer">
+          <button
+            onClick={handleOpenNewInterview}
+            className="flex items-center gap-3 hover:cursor-pointer"
+          >
             <span className="hidden sm:block text-color-font text-lg font-semibold hover:text-place-color transition-colors duration-100">
               Adicionar
             </span>
@@ -180,8 +186,14 @@ export default function Dashboard() {
         onClose={handleCloseApplicationDetailsModal}
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
-      <ModalNewInterview isOpen={isNewInterviewOpen} onClose={handleCloseNewInterview}/>
-      <ModalUserSentiment isOpen={isUserSentiment} onClose={handleCloseUserSentiment}/>
+      <ModalNewInterview
+        isOpen={isNewInterviewOpen}
+        onClose={handleCloseNewInterview}
+      />
+      <ModalUserSentiment
+        isOpen={isUserSentiment}
+        onClose={handleCloseUserSentiment}
+      />
     </div>
   );
 }
