@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { JobApplication } from "../../../types/PropsJobApplication";
+import { api } from "../../../api/baseRequest";
 
 export default function useDashboard() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
     useState(false);
-  const [isNewInterviewOpen, setIsNewInterviewOpen] = useState(false)
-  const  [isUserSentiment, setIsUserSentiment] = useState(false)
-  const [isFeedbackCompanyOpen, setIsFeedbackCompany] = useState(false)
+  const [isNewInterviewOpen, setIsNewInterviewOpen] = useState(false);
+  const [isUserSentiment, setIsUserSentiment] = useState(false);
+  const [isFeedbackCompanyOpen, setIsFeedbackCompany] = useState(false);
+  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
 
   function handleOpenApplicationDetailsModal(): void {
     setIsApplicationDetailsModalOpen(true);
@@ -25,27 +28,43 @@ export default function useDashboard() {
   }
 
   function handleOpenNewInterview() {
-    setIsNewInterviewOpen(true)
+    setIsNewInterviewOpen(true);
   }
 
   function handleCloseNewInterview() {
-    setIsNewInterviewOpen(false)
+    setIsNewInterviewOpen(false);
   }
 
   function handleOpenUserSentiment() {
-    setIsUserSentiment(true)
+    setIsUserSentiment(true);
   }
 
   function handleCloseUserSentiment() {
-    setIsUserSentiment(false)
+    setIsUserSentiment(false);
   }
 
   function handleOpenFeedbackCompany() {
-    setIsFeedbackCompany(true)
+    setIsFeedbackCompany(true);
   }
 
   function handleCloseFeedbackComapny() {
-    setIsFeedbackCompany(false)
+    setIsFeedbackCompany(false);
+  }
+
+  async function handleGetApplications(): Promise<void> {
+    // TODO: Remove this after pull request with AuthContext implementation be merged.
+    const userId = "8a3c5075-72f7-411f-bb89-4c07b04d7f34";
+    const token = localStorage.getItem("token");
+    try {
+      const response = await api.get(`job-applications/?${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setJobApplications(response.data.data.applicationJobs);
+    } catch (error) {
+      console.error("Erro ao carregar candidaturas: ", error);
+    }
   }
 
   return {
@@ -63,6 +82,8 @@ export default function useDashboard() {
     handleCloseUserSentiment,
     handleOpenFeedbackCompany,
     isFeedbackCompanyOpen,
-    handleCloseFeedbackComapny
+    handleCloseFeedbackComapny,
+    handleGetApplications,
+    jobApplications,
   };
 }

@@ -1,34 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Plus } from "phosphor-react";
-import { PropsApplication } from "../../../types/PropsApplication";
 import ModalDetailsApplication from "./application-details/ModalDetailsApplication";
 import useDashboard from "./use-dashboard";
 import Profile from "./profile/Profile";
 import ModalNewInterview from "./new-interview/ModalNewInterview";
 import ModalUserSentiment from "./user-sentiment/ModalUserSentiment";
-import { api } from "../../../api/baseRequest";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { JobApplication } from "../../../types/PropsJobApplication";
-
-// TODO: Remove this mocked data after back-end integration.
-const mockedApplications: PropsApplication[] = [
-  {
-    id: 1,
-    role: "Fullstack Engineer",
-    company: "Google LLC",
-    salary: "$140,000",
-    equity: "Não",
-    status: "Interview",
-  },
-  {
-    id: 1,
-    role: "Fullstack Engineer",
-    company: "Google LLC",
-    salary: "$140,000",
-    equity: "Não",
-    status: "Interview",
-  },
-];
 
 const mockScheduledInterview = {
   role: "Fullstack Engineer",
@@ -37,7 +14,6 @@ const mockScheduledInterview = {
 };
 
 export default function Dashboard() {
-  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
   const {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
@@ -54,23 +30,9 @@ export default function Dashboard() {
     handleOpenFeedbackCompany,
     isFeedbackCompanyOpen,
     handleCloseFeedbackComapny,
+    handleGetApplications,
+    jobApplications,
   } = useDashboard();
-
-  async function handleGetApplications(): Promise<void> {
-    // TODO: Remove this after pull request with AuthContext implementation be merged.
-    const userId = "8a3c5075-72f7-411f-bb89-4c07b04d7f34";
-    const token = localStorage.getItem("token");
-    try {
-      const response = await api.get(`job-applications/?${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setJobApplications(response.data.data.applicationJobs);
-    } catch (error) {
-      console.error("Erro ao carregar candidaturas: ", error);
-    }
-  }
 
   useEffect(() => {
     handleGetApplications();
