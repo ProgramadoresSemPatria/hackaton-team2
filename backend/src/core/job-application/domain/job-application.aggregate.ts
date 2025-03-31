@@ -67,8 +67,28 @@ export class JobApplication extends EntityBase {
     return jobApplication;
   }
 
+  defineName(name: string): JobApplication {
+    this.name = name;
+    return this;
+  }
+
+  defineLink(link: string): JobApplication {
+    this.link = link;
+    return this;
+  }
+
   updateStatus(status: ApplicationStatus): JobApplication {
     this.status = status;
+    return this;
+  }
+
+  updateEquity(isEquity: boolean): JobApplication {
+    this.isEquity = isEquity;
+    return this;
+  }
+
+  updateInternational(isInternational: boolean): JobApplication {
+    this.isInternational = isInternational;
     return this;
   }
 

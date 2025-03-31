@@ -6,5 +6,10 @@ export abstract class IJobApplicationRepository extends IRepositoryBase<JobAppli
     jobApplication: JobApplication,
   ): Promise<JobApplication>;
 
+  abstract updateJobApplication(
+    id: string,
+    data: JobApplication,
+  ): Promise<JobApplication>;
+
   abstract getJobApplicationsByUser(userId: string): Promise<JobApplication[]>;
 }
