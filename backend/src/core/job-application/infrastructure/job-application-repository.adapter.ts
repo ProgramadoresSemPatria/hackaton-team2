@@ -58,4 +58,29 @@ export class JobApplicationRepositoryAdapter
 
     return jobApplications;
   }
+  async updateJobApplication(
+    jobApplicationId: any,
+    jobApplication: JobApplication,
+  ): Promise<JobApplication> {
+    const jobApplicationModel = await this._jobApplicationRepository.findOne({
+      where: { id: jobApplicationId.id },
+    });
+
+    if (!jobApplicationModel) {
+      throw new Error('Job application not found');
+    }
+
+    jobApplicationModel.name = jobApplication.name;
+    jobApplicationModel.link = jobApplication.link;
+    jobApplicationModel.status = jobApplication.status;
+    jobApplicationModel.salary = jobApplication.salary;
+    jobApplicationModel.is_equity = jobApplication.isEquity;
+    jobApplicationModel.is_international = jobApplication.isInternational;
+    jobApplicationModel.user_id = jobApplication.user_id;
+
+    const updatedJobApplicationModel =
+      await this._jobApplicationRepository.save(jobApplicationModel);
+
+    return this.mapToDomain(updatedJobApplicationModel);
+  }
 }
