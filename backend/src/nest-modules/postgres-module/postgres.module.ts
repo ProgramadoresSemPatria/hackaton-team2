@@ -1,3 +1,4 @@
+import { JobApplicationModel } from '@core/job-application/infrastructure/job-application.model';
 import { UserModel } from '@core/user/infrastructure/user.model';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -20,7 +21,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
         synchronize: false,
         logging: true,
         autoLoadEntities: false,
-        entities: [UserModel],
+        entities: [UserModel, JobApplicationModel],
       }),
       dataSourceFactory: async (options: DataSourceOptions) => {
         return new DataSource({

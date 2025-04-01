@@ -1,9 +1,7 @@
-import ModalDetailsApplication from "./view/pages/components/ModalDetailsApplication";
+import { AppRoutes } from "./routes";
 
 function App() {
-  return (
-    <ModalDetailsApplication/>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

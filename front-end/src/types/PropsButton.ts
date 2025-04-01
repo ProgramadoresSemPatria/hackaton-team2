@@ -1,5 +1,7 @@
 export interface PropsButton {
-	name: string;
-	icon?: "register" | "login" | "edit";
-	className?: string;
+  name: string;
+  onClick: () => void;
+  className?: string;
+  type?: "submit" | "reset" | "button";
+  icon?: "register" | "login" | "edit";
 }

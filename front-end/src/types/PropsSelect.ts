@@ -1,8 +1,11 @@
+import { Ref } from "react";
+
 export interface PropsSelect {
-	name?: string;
-	id?: string;
-	value?: string;
-	className?: string;
-	label: string;
-	options: string[];
+  name?: string;
+  id?: string;
+  value?: string;
+  className?: string;
+  ref?: Ref<HTMLSelectElement>;
+  label: string;
+  options: string[];
 }
