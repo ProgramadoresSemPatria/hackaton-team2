@@ -169,11 +169,14 @@ export default function Dashboard() {
         isOpen={isApplicationDetailsModalOpen}
         onClose={handleCloseApplicationDetailsModal}
         application={selectedApplication}
+        onEdit={handleOpenNewInterview}
       />
       <Profile isOpen={isProfileModalOpen} onClose={handleCloseProfileModal} />
       <ModalNewInterview
         isOpen={isNewInterviewOpen}
         onClose={handleCloseNewInterview}
+        isEditMode
+        applicationToEdit={selectedApplication}
       />
       <ModalUserSentiment
         isOpen={isUserSentiment}

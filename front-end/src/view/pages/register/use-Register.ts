@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { api } from "../../../api/baseRequest";
+import toast from "react-hot-toast";
 
 enum STATUS_CODE {
   OK = 200,
@@ -36,14 +37,13 @@ export default function useRegister() {
         response.status === STATUS_CODE.OK ||
         response.status === STATUS_CODE.CREATED
       ) {
-        alert("Usuário criado com sucesso!");
+        toast.success("Usuário criado com sucesso!");
         navigate("/login");
         return;
       }
-
-      alert("Erro no registro. Por favor, tente novamente");
     } catch (error) {
-      console.error("Erro ao tentar fazer o registro: ", error);
+      toast.error("Erro no registro. Por favor, tente novamente");
+      console.error(error);
     }
   }
 
