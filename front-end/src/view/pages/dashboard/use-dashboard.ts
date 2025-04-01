@@ -1,8 +1,13 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { JobApplication } from "../../../types/PropsJobApplication";
 import { api } from "../../../api/baseRequest";
+import useAuth from "../../../hooks/useAuth";
 
 export default function useDashboard() {
+  const {
+    loggedUserInfo: { id },
+  } = useAuth();
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isApplicationDetailsModalOpen, setIsApplicationDetailsModalOpen] =
     useState(false);
@@ -57,8 +62,7 @@ export default function useDashboard() {
   }
 
   async function handleGetApplications(): Promise<void> {
-    // TODO: Remove this after pull request with AuthContext implementation be merged.
-    const userId = "8a3c5075-72f7-411f-bb89-4c07b04d7f34";
+    const userId = id;
     const token = localStorage.getItem("token");
     try {
       const response = await api.get(`job-applications/?${userId}`, {
@@ -68,7 +72,8 @@ export default function useDashboard() {
       });
       setJobApplications(response.data.data.applicationJobs);
     } catch (error) {
-      console.error("Erro ao carregar candidaturas: ", error);
+      toast.error("Erro ao carregar candidaturas");
+      console.error(error);
     }
   }
 
