@@ -35,6 +35,7 @@ export default function Dashboard() {
     handleGetApplications,
     jobApplications,
     selectedApplication,
+    userName,
   } = useDashboard();
 
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function Dashboard() {
         <div className="flex flex-col gap-8 sm:gap-10">
           <div className="flex flex-col gap-4 w-full">
             <span className="font-semibold text-2xl sm:text-3xl">
-              Olá, Michel
+              Olá, {userName}
             </span>
             <span className="text-place-color text-sm sm:text-base">
               Aqui estão os detalhes das suas candidaturas
