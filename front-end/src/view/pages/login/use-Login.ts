@@ -2,12 +2,14 @@ import { useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { api } from "../../../api/baseRequest";
+import useAuth from "../../../hooks/useAuth";
 
 enum STATUS_CODE {
   OK = 200,
 }
 
 export default function useLogin() {
+  const { handleSetLoggedUserInfo } = useAuth();
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -22,8 +24,11 @@ export default function useLogin() {
         password,
       });
       if (response.status === STATUS_CODE.OK) {
-        toast.success("Bem vindo!");
         localStorage.setItem("token", response.data.token);
+        const { id, name, email } = response.data.data.user;
+        handleSetLoggedUserInfo({ id, name, email });
+
+        toast.success("Bem vindo!");
         navigate("/dashboard");
         return;
       }
