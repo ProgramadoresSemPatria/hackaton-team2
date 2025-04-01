@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { api } from "../../../../api/baseRequest";
 import { JobApplication } from "../../../../types/PropsJobApplication";
@@ -10,6 +10,11 @@ enum STATUS_CODE {
 }
 
 export function useModalNewInterview() {
+  const [isInterview, setIsInterview] = useState<String>("");
+  const {
+    loggedUserInfo: { id },
+  } = useAuth();
+
   const roleRef = useRef<HTMLInputElement>(null);
   const salaryRef = useRef<HTMLInputElement>(null);
   const isInternationalRef = useRef<HTMLSelectElement>(null);
@@ -21,9 +26,6 @@ export function useModalNewInterview() {
   const companyPhoneNumberRef = useRef<HTMLInputElement>(null);
   const applicationStatusRef = useRef<HTMLSelectElement>(null);
   const interviewDateRef = useRef<HTMLInputElement>(null);
-  const {
-    loggedUserInfo: { id },
-  } = useAuth();
 
   async function handleEditIInterview(application?: JobApplication) {
     try {
@@ -81,6 +83,10 @@ export function useModalNewInterview() {
     }
   }
 
+  function handleChangeStatus(event: ChangeEvent<HTMLSelectElement>) {
+    setIsInterview(event.target.value);
+  }
+
   return {
     roleRef,
     salaryRef,
@@ -94,5 +100,7 @@ export function useModalNewInterview() {
     applicationStatusRef,
     interviewDateRef,
     handleNewInterview,
+    handleChangeStatus,
+    isInterview,
   };
 }

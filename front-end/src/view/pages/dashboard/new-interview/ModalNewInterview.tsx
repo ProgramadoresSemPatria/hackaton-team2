@@ -39,16 +39,12 @@ export default function ModalNewInterview({
     applicationStatusRef,
     interviewDateRef,
     handleNewInterview,
+    handleChangeStatus,
+    isInterview,
   } = useModalNewInterview();
   const [updatedApplication, setUpdatedApplication] = useState(
     {} as JobApplication
   );
-
-  const [isInterview, setIsInterview] = useState<String>("");
-
-  function handleChangeStatus(event: ChangeEvent<HTMLSelectElement>) {
-    setIsInterview(event.target.value);
-  }
 
   return (
     <Modal isOpen={isOpen}>
