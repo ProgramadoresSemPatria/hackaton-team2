@@ -20,7 +20,6 @@ export class CreateJobApplicationValidator
       'salary',
       'isEquity',
       'isInternational',
-      'JobApplication_id',
     ];
     validateRequiredFieldsAndThrows<CreateJobApplicationInputDto>(
       requiredFields,

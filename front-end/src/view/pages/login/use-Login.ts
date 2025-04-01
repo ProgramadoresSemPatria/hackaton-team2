@@ -24,7 +24,7 @@ export default function useLogin() {
         password,
       });
       if (response.status === STATUS_CODE.OK) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.data.token);
         const { id, name, email } = response.data.data.user;
         handleSetLoggedUserInfo({ id, name, email });
         localStorage.setItem("userName", name);
