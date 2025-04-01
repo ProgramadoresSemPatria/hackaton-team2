@@ -8,9 +8,13 @@ export default function Input({
   value,
   className,
   ref,
+  defaultValue,
+  onChange,
 }: PropsInput) {
   return (
     <input
+      onChange={onChange}
+      defaultValue={defaultValue}
       ref={ref}
       id={id}
       type={type}

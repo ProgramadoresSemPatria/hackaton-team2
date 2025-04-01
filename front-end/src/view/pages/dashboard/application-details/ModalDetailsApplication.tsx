@@ -7,12 +7,14 @@ interface PropsModalDetailsApplication {
   isOpen: boolean;
   onClose: () => void;
   application: JobApplication;
+  onEdit: () => void;
 }
 
 export default function ModalDetailsApplication({
   isOpen,
   onClose,
   application,
+  onEdit,
 }: PropsModalDetailsApplication) {
   return (
     <>
@@ -66,7 +68,7 @@ export default function ModalDetailsApplication({
             >
               Fechar
             </button>
-            <Button name="Editar" icon="edit" />
+            <Button onClick={onEdit} name="Editar" icon="edit" />
           </footer>
         </section>
       </Modal>
