@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { api } from "../../../api/baseRequest";
 import useAuth from "../../../hooks/useAuth";
@@ -23,15 +24,16 @@ export default function useLogin() {
         password,
       });
       if (response.status === STATUS_CODE.OK) {
+        localStorage.setItem("token", response.data.token);
         const { id, name, email } = response.data.data.user;
         handleSetLoggedUserInfo({ id, name, email });
 
-        localStorage.setItem("token", response.data.data.token);
+        toast.success("Bem vindo!");
         navigate("/dashboard");
         return;
       }
 
-      alert("Erro no login. Por favor, tente novamente");
+      toast.error("Erro no login. Por favor, tente novamente");
     } catch (error) {
       console.error("Erro ao tentar fazer o login: ", error);
     }
