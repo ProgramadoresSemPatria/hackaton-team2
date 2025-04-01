@@ -4,12 +4,14 @@ import { Toaster } from "react-hot-toast";
 import AuthContextProvider from "./context/authContext.tsx";
 import App from "./App.tsx";
 import "./index.css";
+import Dashboard from "./view/pages/dashboard/Dashboard.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthContextProvider>
+    {/* <AuthContextProvider>
       <App />
       <Toaster position="bottom-center" />
-    </AuthContextProvider>
+    </AuthContextProvider> */}
+    <Dashboard />
   </StrictMode>
 );

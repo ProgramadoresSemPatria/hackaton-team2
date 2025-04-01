@@ -8,9 +8,11 @@ export default function Select({
   value,
   className,
   ref,
+  changeSelect
 }: PropsSelect) {
   return (
     <select
+      onChange={changeSelect}
       ref={ref}
       name={name}
       id={id}
