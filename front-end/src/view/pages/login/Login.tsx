@@ -6,6 +6,8 @@ import useLogin from "./use-Login";
 export default function Login() {
   const { emailRef, passwordRef, handleLogin } = useLogin();
 
+  document.title = "Login"
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center p-4">
