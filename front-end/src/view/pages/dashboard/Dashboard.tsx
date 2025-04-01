@@ -146,18 +146,13 @@ export default function Dashboard() {
                     {formatCurrency(application.salary)}
                   </span>
                 </div>
-                <div className="flex flex-col gap-3 sm:border-r sm:border-place-color flex-1 sm:flex-col-reverse">
+                <div className="flex flex-col gap-3 sm:border-place-color flex-1 sm:flex-col-reverse">
                   <span className="font-medium text-place-color self-start">
                     Tem Equity
                   </span>
                   <span className="text-lg font-semibold self-start truncate">
                     {application.isEquity ? "Sim" : "Não"}
                   </span>
-                </div>
-                <div className="flex flex-col items-start justify-center min-w-48 flex-1 sm:items-center">
-                  <div className="bg-primary-color py-3 px-8 rounded-full">
-                    <span>{application.status}</span>
-                  </div>
                 </div>
               </button>
             ))
