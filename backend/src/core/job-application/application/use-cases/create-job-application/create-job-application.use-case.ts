@@ -23,6 +23,9 @@ export class CreateJobApplicationUseCase
     isEquity,
     isInternational,
     userId,
+    companyName,
+    interviewDate,
+    directContact,
   }: ICreateJobApplicationInput): Promise<ICreateJobApplicationOutput> {
     const entity = JobApplication.create({
       name,
@@ -32,6 +35,9 @@ export class CreateJobApplicationUseCase
       isEquity,
       isInternational,
       user_id: userId,
+      company_name: companyName,
+      interviewDate: interviewDate,
+      directContact,
     });
 
     const jobApplicationCreated =

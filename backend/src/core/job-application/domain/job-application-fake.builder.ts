@@ -2,15 +2,14 @@ import {
   FakeBuilder,
   PropOrFactory,
 } from '../../../libs/shared/testing/fake.bulder';
-import { ApplicationStatus, JobApplication } from './job-application.aggregate';
+import { JobApplication } from './job-application.aggregate';
 
 export class JobApplicationFakerBuilder<
   TBuild = any,
 > extends FakeBuilder<TBuild> {
   private _name: PropOrFactory<string> = () => `Job ${this._chance.word()}`;
   private _link: PropOrFactory<string> = () => this._chance.url();
-  private _status: PropOrFactory<ApplicationStatus> = () =>
-    ApplicationStatus.APPLIED;
+  private _status: PropOrFactory<string> = () => this._chance.string();
   private _salary: PropOrFactory<number> = () =>
     this._chance.integer({ min: 30000, max: 150000 });
   private _isEquity: PropOrFactory<boolean> = () => this._chance.bool();
@@ -37,11 +36,6 @@ export class JobApplicationFakerBuilder<
 
   withLink(link: string): JobApplicationFakerBuilder<TBuild> {
     this._link = link;
-    return this;
-  }
-
-  withStatus(status: ApplicationStatus): JobApplicationFakerBuilder<TBuild> {
-    this._status = status;
     return this;
   }
 
@@ -75,6 +69,7 @@ export class JobApplicationFakerBuilder<
             isEquity: this._callFactory(this._isEquity),
             isInternational: this._callFactory(this._isInternational),
             user_id: 'aaa-aaaa-aaaa-aaaa',
+            company_name: 'aaaaa',
           }),
       );
 
