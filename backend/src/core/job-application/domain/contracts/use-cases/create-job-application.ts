@@ -1,15 +1,16 @@
 import { IUseCase } from 'src/libs/shared/src/domain/contracts/application/use-case';
-import { ApplicationStatus } from '../../job-application.aggregate';
 
 export type ICreateJobApplicationInput = {
   name: string;
   link: string;
-  status: ApplicationStatus;
+  status: string;
   salary: number;
   isEquity: boolean;
   isInternational: boolean;
   companyName: string;
   userId: string;
+  directContact: string;
+  interviewDate: string;
 };
 
 export type ICreateJobApplicationOutput = {

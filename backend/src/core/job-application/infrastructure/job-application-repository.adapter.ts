@@ -34,6 +34,11 @@ export class JobApplicationRepositoryAdapter
       isEquity: normalizedPersistencyObject.is_equity,
       isInternational: normalizedPersistencyObject.is_international,
       user_id: normalizedPersistencyObject.user_id,
+      company_name: normalizedPersistencyObject.company_name,
+      companyFeedback: normalizedPersistencyObject.companyFeedback,
+      userFellings: normalizedPersistencyObject.userFellings,
+      interviewDate: normalizedPersistencyObject.interviewDate,
+      directContact: normalizedPersistencyObject.directContact,
     });
     return jobApplication;
   }
@@ -77,6 +82,11 @@ export class JobApplicationRepositoryAdapter
     jobApplicationModel.is_equity = jobApplication.isEquity;
     jobApplicationModel.is_international = jobApplication.isInternational;
     jobApplicationModel.user_id = jobApplication.user_id;
+    jobApplicationModel.company_name = jobApplication.company_name;
+    jobApplicationModel.companyFeedback = jobApplication.companyFeedback;
+    jobApplicationModel.directContact = jobApplication.directContact;
+    jobApplicationModel.interviewDate = jobApplication.interviewDate;
+    jobApplicationModel.userFellings = jobApplication.userFellings;
 
     const updatedJobApplicationModel =
       await this._jobApplicationRepository.save(jobApplicationModel);

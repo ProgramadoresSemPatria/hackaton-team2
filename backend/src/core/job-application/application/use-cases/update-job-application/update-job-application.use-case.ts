@@ -26,6 +26,9 @@ export class UpdateJobApplicationUseCase
       salary,
       isEquity,
       isInternational,
+      companyName,
+      userFellings,
+      companyFeedback,
     } = input;
     await this._validateJobApplicationId(jobApplicationsId);
     const jobApplication: JobApplication =
@@ -36,6 +39,9 @@ export class UpdateJobApplicationUseCase
       .defineLink(link)
       .updateStatus(status)
       .updateSalary(salary)
+      .updateCompanyName(companyName)
+      .updateUserFellings(userFellings)
+      .updateUCompanyFeedback(companyFeedback)
       .updateInternational(isInternational)
       .updateEquity(isEquity);
 

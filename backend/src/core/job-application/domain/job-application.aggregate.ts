@@ -2,38 +2,33 @@ import { EntityBase } from 'src/libs/shared/src/data-layer/entities/entity-base'
 import { Uuid } from 'src/libs/shared/src/domain/models/value-objects/uuid.vo';
 import { JobApplicationFakerBuilder } from './job-application-fake.builder';
 
-export enum ApplicationStatus {
-  APPLIED = 'applied',
-  SCREENING = 'screening',
-  INTERVIEW = 'interview',
-  TECHNICAL_INTERVIEW = 'technical_interview',
-  OFFER = 'offer',
-  ACCEPTED = 'accepted',
-  REJECTED = 'rejected',
-  WITHDRAWN = 'withdrawn',
-}
-
 export type JobApplicationConstructorProps = {
   job_application_id?: JobApplicationId;
   name: string;
   link: string;
-  status: ApplicationStatus;
+  status: string;
   salary: number;
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
   company_name: string;
+  directContact?: string;
+  interviewDate?: string;
+  companyFeedback?: string;
+  userFellings?: string;
 };
 
 export type JobApplicationCreateCommand = {
   name: string;
   link: string;
-  status?: ApplicationStatus;
+  status: string;
   salary: number;
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
   company_name: string;
+  interviewDate: string;
+  directContact: string;
 };
 
 export class JobApplicationId extends Uuid {}
@@ -42,12 +37,16 @@ export class JobApplication extends EntityBase {
   job_application_id: JobApplicationId;
   name: string;
   link: string;
-  status: ApplicationStatus;
+  status: string;
   salary: number;
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
   company_name: string;
+  directContact: string;
+  interviewDate: string;
+  companyFeedback: string;
+  userFellings: string;
 
   constructor(props: JobApplicationConstructorProps) {
     super();
@@ -61,12 +60,13 @@ export class JobApplication extends EntityBase {
     this.isInternational = props.isInternational;
     this.user_id = props.user_id;
     this.company_name = props.company_name;
+    this.directContact = props.directContact;
+    this.interviewDate = props.interviewDate;
   }
 
   static create(props: JobApplicationCreateCommand) {
     const jobApplication = new JobApplication({
       ...props,
-      status: props.status ?? ApplicationStatus.APPLIED,
     });
     return jobApplication;
   }
@@ -81,13 +81,28 @@ export class JobApplication extends EntityBase {
     return this;
   }
 
-  updateStatus(status: ApplicationStatus): JobApplication {
+  updateStatus(status: string): JobApplication {
     this.status = status;
     return this;
   }
 
   updateEquity(isEquity: boolean): JobApplication {
     this.isEquity = isEquity;
+    return this;
+  }
+
+  updateCompanyName(company_name: string): JobApplication {
+    this.company_name = company_name;
+    return this;
+  }
+
+  updateUCompanyFeedback(companyFeedback: string): JobApplication {
+    this.companyFeedback = companyFeedback;
+    return this;
+  }
+
+  updateUserFellings(userFellings: string): JobApplication {
+    this.userFellings = userFellings;
     return this;
   }
 
