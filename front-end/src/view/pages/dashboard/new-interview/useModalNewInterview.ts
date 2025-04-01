@@ -1,5 +1,8 @@
-import { useRef } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { api } from "../../../../api/baseRequest";
+import { JobApplication } from "../../../../types/PropsJobApplication";
+import useAuth from "../../../../hooks/useAuth";
 
 enum STATUS_CODE {
   OK = 200,
@@ -7,6 +10,11 @@ enum STATUS_CODE {
 }
 
 export function useModalNewInterview() {
+  const [isInterview, setIsInterview] = useState<String>("");
+  const {
+    loggedUserInfo: { id },
+  } = useAuth();
+
   const roleRef = useRef<HTMLInputElement>(null);
   const salaryRef = useRef<HTMLInputElement>(null);
   const isInternationalRef = useRef<HTMLSelectElement>(null);
@@ -19,7 +27,26 @@ export function useModalNewInterview() {
   const applicationStatusRef = useRef<HTMLSelectElement>(null);
   const interviewDateRef = useRef<HTMLInputElement>(null);
 
-  async function handleNewInterview(callback: () => void) {
+  async function handleEditIInterview(application?: JobApplication) {
+    try {
+      await api.patch("/job-application", {
+        body: application,
+      });
+      toast.success("Candidatura editada com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao editar candidatura!");
+    }
+  }
+
+  async function handleNewInterview(
+    callback: () => void,
+    isEditMode?: boolean,
+    applicationToEdit?: JobApplication
+  ) {
+    if (isEditMode) {
+      handleEditIInterview(applicationToEdit);
+      return;
+    }
     const role = roleRef.current?.value;
     const salary = Number(salaryRef.current?.value) || 0;
     const isInternational = isInternationalRef.current?.value;
@@ -37,8 +64,7 @@ export function useModalNewInterview() {
         isEquity: hasEquity,
         salary: salary,
         companyName: companyName,
-        JobApplication_id: "123e4567-e89b-12d3-a456-426614174000",
-        userId: "8a3c5075-72f7-411f-bb89-4c07b04d7f34",
+        userId: id,
       });
 
       if (
@@ -52,8 +78,13 @@ export function useModalNewInterview() {
 
       alert("Erro ao cadastrar candidatura. Por favor, tente novamente");
     } catch (error) {
+      toast.error("Erro ao cadastrar candidatura");
       console.error("Erro ao cadastrar candidatura: ", error);
     }
+  }
+
+  function handleChangeStatus(event: ChangeEvent<HTMLSelectElement>) {
+    setIsInterview(event.target.value);
   }
 
   return {
@@ -69,5 +100,7 @@ export function useModalNewInterview() {
     applicationStatusRef,
     interviewDateRef,
     handleNewInterview,
+    handleChangeStatus,
+    isInterview,
   };
 }

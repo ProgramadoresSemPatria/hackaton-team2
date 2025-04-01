@@ -7,7 +7,6 @@ import {
   ManyToOne,
   TableInheritance,
 } from 'typeorm';
-import { ApplicationStatus } from '../domain/job-application.aggregate';
 
 @Entity({
   name: 'job_applications',
@@ -21,12 +20,25 @@ export class JobApplicationModel extends BaseModel {
   @Column({ type: 'varchar', nullable: false })
   link: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  company_name: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  directContact: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  interviewDate: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  companyFeedback: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  userFellings: string;
+
   @Column({
-    type: 'enum',
-    enum: ApplicationStatus,
-    default: ApplicationStatus.APPLIED,
+    type: 'varchar',
   })
-  status: ApplicationStatus;
+  status: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   salary: number;

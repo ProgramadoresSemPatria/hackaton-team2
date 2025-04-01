@@ -27,6 +27,7 @@ export default function useLogin() {
         localStorage.setItem("token", response.data.data.token);
         const { id, name, email } = response.data.data.user;
         handleSetLoggedUserInfo({ id, name, email });
+        localStorage.setItem("userName", name);
 
         toast.success("Bem vindo!");
         navigate("/dashboard");
@@ -35,7 +36,8 @@ export default function useLogin() {
 
       toast.error("Erro no login. Por favor, tente novamente");
     } catch (error) {
-      console.error("Erro ao tentar fazer o login: ", error);
+      toast.error("Erro no login. Por favor, tente novamente");
+      console.error(error);
     }
   }
 

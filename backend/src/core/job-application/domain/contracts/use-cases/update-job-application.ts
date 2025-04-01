@@ -1,17 +1,19 @@
 import { IUseCase } from 'src/libs/shared/src/domain/contracts/application/use-case';
-import {
-  ApplicationStatus,
-  JobApplication,
-} from '../../job-application.aggregate';
+import { JobApplication } from '../../job-application.aggregate';
 
 export interface IUpdateJobApplicationsInput {
   jobApplicationsId: string;
   name?: string;
   link?: string;
-  status?: ApplicationStatus;
+  status?: string;
   salary?: number;
   isEquity?: boolean;
   isInternational?: boolean;
+  companyName?: string;
+  directContact?: string;
+  interviewDate?: string;
+  userFellings?: string;
+  companyFeedback?: string;
 }
 
 export type IUpdateJobApplicationsOutput = JobApplication;

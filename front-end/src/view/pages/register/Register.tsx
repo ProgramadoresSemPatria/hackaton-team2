@@ -7,6 +7,8 @@ export default function Register() {
   const { nameRef, emailRef, passwordRef, confirmPasswordRef, handleRegister } =
     useRegister();
 
+    document.title = "Registro"
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <form
