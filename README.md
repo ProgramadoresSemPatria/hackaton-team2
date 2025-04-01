@@ -66,10 +66,10 @@ docker-compose up  # ou npm run docker:start
 cd ../frontend
 
 # Instale as dependências
-npm install
+yarn
 
 # Inicie o frontend
-npm run dev
+yarn dev
 ```
 
 ---
