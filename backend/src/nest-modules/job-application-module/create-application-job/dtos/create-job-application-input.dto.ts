@@ -1,28 +1,31 @@
-import { ApplicationStatus } from '@core/job-application/domain/job-application.aggregate';
 import { validateSync } from 'class-validator';
 
 export type CreateJobApplicationInputConstructorProps = {
   name: string;
   link: string;
-  status: ApplicationStatus;
+  status: string;
   salary: number;
   isEquity: boolean;
   isInternational: boolean;
   JobApplication_id: string;
   companyName: string;
   userId: string;
+  directContact: string;
+  interviewDate: string;
 };
 
 export class CreateJobApplicationInputDto {
   name: string;
   link: string;
   JobApplication_id: string;
-  status: ApplicationStatus;
+  status: string;
   isEquity: boolean;
   isInternational: boolean;
   salary: number;
   companyName: string;
   userId: string;
+  directContact: string;
+  interviewDate: string;
 
   constructor(props: CreateJobApplicationInputConstructorProps) {
     if (!props) return;
@@ -35,6 +38,8 @@ export class CreateJobApplicationInputDto {
     this.salary = props.salary;
     this.companyName = props.companyName;
     this.userId = props.userId;
+    this.directContact = props.directContact;
+    this.interviewDate = props.interviewDate;
   }
 }
 
