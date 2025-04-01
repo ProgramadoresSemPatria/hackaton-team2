@@ -24,18 +24,16 @@ export default function ModalNewInterview({ isOpen, onClose }: ModalNewInterview
 				</div>
 
 				<Input placeholder="Link da vaga" type="text" />
-
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-					<Input placeholder="Nome da empresa" type="text" />
-					<Input placeholder="Site da empresa" type="text" />
-				</div>
-
+				<Input placeholder="Nome da empresa" type="text" />
 				<Input placeholder="Contato direto na empresa" type="text" />
-
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-					<Input placeholder="Telefone da empresa" type="tel" />
-					<Select label="Status" options={["Aberta", "Fechada"]} />
-				</div>
+				<Select label="Status" options={["applied", 
+												"screening", 
+												"interview", 
+												"technical_interview",
+												"offer",
+												"accepted",
+												"rejected", 
+												"withdrawn"]} />
 
 				<div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
 					<a
