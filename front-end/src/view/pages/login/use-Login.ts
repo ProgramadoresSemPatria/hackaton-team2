@@ -27,6 +27,7 @@ export default function useLogin() {
         localStorage.setItem("token", response.data.token);
         const { id, name, email } = response.data.data.user;
         handleSetLoggedUserInfo({ id, name, email });
+        localStorage.setItem("userName", name);
 
         toast.success("Bem vindo!");
         navigate("/dashboard");

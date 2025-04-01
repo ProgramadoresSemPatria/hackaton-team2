@@ -12,6 +12,7 @@ export default function useDashboard() {
   const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
   const [selectedApplication, setSelectedApplication] =
     useState<JobApplication>({} as JobApplication);
+  const userName = localStorage.getItem("userName");
 
   function handleOpenApplicationDetailsModal(
     application: JobApplication
@@ -91,5 +92,6 @@ export default function useDashboard() {
     handleGetApplications,
     jobApplications,
     selectedApplication,
+    userName,
   };
 }
