@@ -1,7 +1,8 @@
 import { useRef } from "react";
+import toast from "react-hot-toast";
 import { api } from "../../../../api/baseRequest";
 import { JobApplication } from "../../../../types/PropsJobApplication";
-import toast from "react-hot-toast";
+import useAuth from "../../../../hooks/useAuth";
 
 enum STATUS_CODE {
   OK = 200,
@@ -20,6 +21,9 @@ export function useModalNewInterview() {
   const companyPhoneNumberRef = useRef<HTMLInputElement>(null);
   const applicationStatusRef = useRef<HTMLSelectElement>(null);
   const interviewDateRef = useRef<HTMLInputElement>(null);
+  const {
+    loggedUserInfo: { id },
+  } = useAuth();
 
   async function handleEditIInterview(application?: JobApplication) {
     try {
@@ -58,8 +62,7 @@ export function useModalNewInterview() {
         isEquity: hasEquity,
         salary: salary,
         companyName: companyName,
-        JobApplication_id: "123e4567-e89b-12d3-a456-426614174000",
-        userId: "8a3c5075-72f7-411f-bb89-4c07b04d7f34",
+        userId: id,
       });
 
       if (

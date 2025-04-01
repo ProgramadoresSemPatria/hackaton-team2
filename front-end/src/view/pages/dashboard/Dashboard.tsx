@@ -5,6 +5,8 @@ import useDashboard from "./use-dashboard";
 import Profile from "./profile/Profile";
 import ModalNewInterview from "./new-interview/ModalNewInterview";
 import ModalUserSentiment from "./user-sentiment/ModalUserSentiment";
+import InterviewFlowLogo from '../../../assets/InterviewFlowLogo.png'
+import { motion } from "framer-motion";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 const mockScheduledInterview = {
@@ -33,6 +35,7 @@ export default function Dashboard() {
     handleGetApplications,
     jobApplications,
     selectedApplication,
+    userName,
   } = useDashboard();
 
   useEffect(() => {
@@ -41,19 +44,17 @@ export default function Dashboard() {
 
   return (
     <div className="w-full h-screen flex flex-col items-center">
-      <header className="w-full flex justify-between py-8 px-20">
-        <div></div> {/** Logo */}
-        <div className="flex gap-20">
-          <button className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
-            Home
-          </button>
+      <header className="w-full flex justify-around sm:justify-between gap-15 py-8 px-8 sm:px-20 font-semibold">
+        <div className="w-40 hidden sm:block cursor-pointer"
+        >
+          <img src={InterviewFlowLogo} alt="InterviewFlow logo"/>
+        </div>
           <button
             onClick={handleOpenProfileModal}
             className="hover:cursor-pointer hover:text-place-color transition-colors duration-100"
           >
             Perfil
           </button>
-        </div>
         <button className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
           Sair
         </button>
@@ -63,7 +64,7 @@ export default function Dashboard() {
         <div className="flex flex-col gap-8 sm:gap-10">
           <div className="flex flex-col gap-4 w-full">
             <span className="font-semibold text-2xl sm:text-3xl">
-              Olá, Michel
+              Olá, {userName}
             </span>
             <span className="text-place-color text-sm sm:text-base">
               Aqui estão os detalhes das suas candidaturas

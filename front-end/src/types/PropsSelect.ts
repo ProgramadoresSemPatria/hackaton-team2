@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { ChangeEvent, Ref } from "react";
 
 export interface PropsSelect {
   name?: string;
@@ -8,4 +8,5 @@ export interface PropsSelect {
   ref?: Ref<HTMLSelectElement>;
   label: string;
   options: string[];
+  changeSelect?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }

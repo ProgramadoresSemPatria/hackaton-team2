@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { JobApplication } from "../../../../types/PropsJobApplication";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
@@ -43,6 +43,12 @@ export default function ModalNewInterview({
   const [updatedApplication, setUpdatedApplication] = useState(
     {} as JobApplication
   );
+
+  const [isInterview, setIsInterview] = useState<String>("");
+
+  function handleChangeStatus(event: ChangeEvent<HTMLSelectElement>) {
+    setIsInterview(event.target.value);
+  }
 
   return (
     <Modal isOpen={isOpen}>
@@ -146,24 +152,38 @@ export default function ModalNewInterview({
               "rejected",
               "withdrawn",
             ]}
+            changeSelect={handleChangeStatus}
           />
         </div>
 
-        <div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
-          <a
-            onClick={handleOpenFeedbackCompany}
-            href="#"
-            className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
-          >
-            Feedback da empresa
-          </a>
-          <Input
-            ref={interviewDateRef}
-            placeholder="Data da entrevista"
-            type="date"
-            className="scheme-dark"
-          />
-        </div>
+        {isInterview === "interview" ||
+        isInterview === "technical_interview" ? (
+          <div className="flex flex-col-reverse sm:grid sm:grid-cols-2 gap-3">
+            <a
+              onClick={handleOpenFeedbackCompany}
+              href="#"
+              className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
+            >
+              Feedback da empresa
+            </a>
+            <Input
+              ref={interviewDateRef}
+              placeholder="Data da entrevista"
+              type="date"
+              className="scheme-dark"
+            />
+          </div>
+        ) : (
+          <div className="py-1">
+            <a
+              onClick={handleOpenFeedbackCompany}
+              href="#"
+              className="underline flex items-center justify-center hover:text-place-color duration-150 ease-linear font-semibold"
+            >
+              Feedback da empresa
+            </a>
+          </div>
+        )}
 
         <footer className="flex flex-col-reverse sm:grid grid-cols-2 mt-4 gap-2">
           <a
