@@ -26,13 +26,7 @@ export default function Login() {
           </div>
           <Input ref={emailRef} placeholder="E-mail" type="e-mail" />
           <Input ref={passwordRef} placeholder="Senha" type="password" />
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-            <a
-              href="#"
-              className="text-color-font hover:text-primary-color transition-colors duration-150 ease-linear "
-            >
-              Esqueceu sua senha?
-            </a>
+          <div className="w-full flex justify-end ">
             <Button
               type="button"
               name="Entrar"
