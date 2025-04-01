@@ -8,4 +8,6 @@ export interface PropsInput {
   value?: string;
   className?: string;
   ref?: Ref<HTMLInputElement> | undefined;
+  defaultValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

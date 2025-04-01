@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { JobApplication } from "../../../../types/PropsJobApplication";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Modal from "../../../components/Modal";
@@ -9,11 +11,15 @@ import { useModalNewInterview } from "./useModalNewInterview";
 interface ModalNewInterviewProps {
   isOpen: boolean;
   onClose: () => void;
+  isEditMode?: boolean;
+  applicationToEdit?: JobApplication;
 }
 
 export default function ModalNewInterview({
   isOpen,
   onClose,
+  isEditMode,
+  applicationToEdit,
 }: ModalNewInterviewProps) {
   const {
     handleOpenFeedbackCompany,
@@ -34,23 +40,73 @@ export default function ModalNewInterview({
     interviewDateRef,
     handleNewInterview,
   } = useModalNewInterview();
+  const [updatedApplication, setUpdatedApplication] = useState(
+    {} as JobApplication
+  );
 
   return (
     <Modal isOpen={isOpen}>
       <section className="flex flex-col gap-2 text-color-font">
-        <Input ref={roleRef} placeholder="Cargo" type="text" />
-        <Input ref={salaryRef} placeholder="Salário" type="text" />
+        <Input
+          defaultValue={applicationToEdit?.name}
+          ref={roleRef}
+          placeholder="Cargo"
+          type="text"
+          onChange={(e) =>
+            setUpdatedApplication({
+              ...updatedApplication,
+              name: e.target.value,
+            })
+          }
+        />
+        <Input
+          defaultValue={applicationToEdit?.salary}
+          ref={salaryRef}
+          placeholder="Salário"
+          type="text"
+          onChange={(e) =>
+            setUpdatedApplication({
+              ...updatedApplication,
+              salary: e.target.value,
+            })
+          }
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <Select
+            value={applicationToEdit?.isInternational ? "Sim" : "Não"}
             ref={isInternationalRef}
             label="É internacional?"
             options={["Sim", "Não"]}
           />
-          <Input ref={equityRef} placeholder="Equity" type="text" />
+          <Input
+            defaultValue={
+              applicationToEdit?.isEquity ? "Com equity" : "Sem equity"
+            }
+            ref={equityRef}
+            placeholder="Equity"
+            type="text"
+            onChange={(e) =>
+              setUpdatedApplication({
+                ...updatedApplication,
+                isEquity: e.target.value === "Sim",
+              })
+            }
+          />
         </div>
 
-        <Input ref={jobLinkRef} placeholder="Link da vaga" type="text" />
+        <Input
+          defaultValue={applicationToEdit?.link}
+          ref={jobLinkRef}
+          placeholder="Link da vaga"
+          type="text"
+          onChange={(e) =>
+            setUpdatedApplication({
+              ...updatedApplication,
+              link: e.target.value,
+            })
+          }
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <Input
@@ -117,7 +173,12 @@ export default function ModalNewInterview({
           >
             Fechar
           </a>
-          <Button onClick={() => handleNewInterview(onClose)} name="Salvar" />
+          <Button
+            onClick={() =>
+              handleNewInterview(onClose, isEditMode, updatedApplication)
+            }
+            name="Salvar"
+          />
         </footer>
         <ModalFeedbackCompany
           isOpen={isFeedbackCompanyOpen}

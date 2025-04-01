@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { api } from "../../../../api/baseRequest";
+import { JobApplication } from "../../../../types/PropsJobApplication";
+import toast from "react-hot-toast";
 
 enum STATUS_CODE {
   OK = 200,
@@ -19,7 +21,26 @@ export function useModalNewInterview() {
   const applicationStatusRef = useRef<HTMLSelectElement>(null);
   const interviewDateRef = useRef<HTMLInputElement>(null);
 
-  async function handleNewInterview(callback: () => void) {
+  async function handleEditIInterview(application?: JobApplication) {
+    try {
+      await api.patch("/job-application", {
+        body: application,
+      });
+      toast.success("Candidatura editada com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao editar candidatura!");
+    }
+  }
+
+  async function handleNewInterview(
+    callback: () => void,
+    isEditMode?: boolean,
+    applicationToEdit?: JobApplication
+  ) {
+    if (isEditMode) {
+      handleEditIInterview(applicationToEdit);
+      return;
+    }
     const role = roleRef.current?.value;
     const salary = Number(salaryRef.current?.value) || 0;
     const isInternational = isInternationalRef.current?.value;
@@ -52,6 +73,7 @@ export function useModalNewInterview() {
 
       alert("Erro ao cadastrar candidatura. Por favor, tente novamente");
     } catch (error) {
+      toast.error("Erro ao cadastrar candidatura");
       console.error("Erro ao cadastrar candidatura: ", error);
     }
   }

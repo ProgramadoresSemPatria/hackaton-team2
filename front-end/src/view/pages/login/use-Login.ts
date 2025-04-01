@@ -35,7 +35,8 @@ export default function useLogin() {
 
       toast.error("Erro no login. Por favor, tente novamente");
     } catch (error) {
-      console.error("Erro ao tentar fazer o login: ", error);
+      toast.error("Erro no login. Por favor, tente novamente");
+      console.error(error);
     }
   }
 
