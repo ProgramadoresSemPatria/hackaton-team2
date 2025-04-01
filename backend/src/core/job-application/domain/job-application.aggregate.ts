@@ -22,6 +22,7 @@ export type JobApplicationConstructorProps = {
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
+  company_name: string;
 };
 
 export type JobApplicationCreateCommand = {
@@ -32,6 +33,7 @@ export type JobApplicationCreateCommand = {
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
+  company_name: string;
 };
 
 export class JobApplicationId extends Uuid {}
@@ -45,6 +47,7 @@ export class JobApplication extends EntityBase {
   isEquity: boolean;
   isInternational: boolean;
   user_id: string;
+  company_name: string;
 
   constructor(props: JobApplicationConstructorProps) {
     super();
@@ -57,6 +60,7 @@ export class JobApplication extends EntityBase {
     this.isEquity = props.isEquity;
     this.isInternational = props.isInternational;
     this.user_id = props.user_id;
+    this.company_name = props.company_name;
   }
 
   static create(props: JobApplicationCreateCommand) {
