@@ -33,6 +33,7 @@ export default function Dashboard() {
     handleGetApplications,
     jobApplications,
     selectedApplication,
+    handleLogout,
   } = useDashboard();
 
   useEffect(() => {
@@ -54,7 +55,10 @@ export default function Dashboard() {
             Perfil
           </button>
         </div>
-        <button className="hover:cursor-pointer hover:text-place-color transition-colors duration-100">
+        <button
+          onClick={handleLogout}
+          className="hover:cursor-pointer hover:text-place-color transition-colors duration-100"
+        >
           Sair
         </button>
       </header>

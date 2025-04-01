@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { JobApplication } from "../../../types/PropsJobApplication";
 import { api } from "../../../api/baseRequest";
 import useAuth from "../../../hooks/useAuth";
 
 export default function useDashboard() {
+  const navigate = useNavigate();
   const {
     loggedUserInfo: { id },
   } = useAuth();
@@ -77,6 +79,11 @@ export default function useDashboard() {
     }
   }
 
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+
   return {
     handleOpenApplicationDetailsModal,
     handleCloseApplicationDetailsModal,
@@ -96,5 +103,6 @@ export default function useDashboard() {
     handleGetApplications,
     jobApplications,
     selectedApplication,
+    handleLogout,
   };
 }
